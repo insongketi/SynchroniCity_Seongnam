@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.onem2m.org/xml/protocols"
+	xmlns:m2m="http://www.onem2m.org/xml/protocols" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	elementFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:include schemaLocation="CDT-enumerationTypes-v2_18_0.xsd" />
+	<xs:include schemaLocation="CDT-commonTypes-v2_18_0.xsd" />
+	
+	<xs:element name="busStop">
+		<xs:complexType>
+				<xs:sequence>
+					<xs:element name="resourceType" type="m2m:resourceType" />
+					<xs:element name="resourceID" type="m2m:ID" />
+					<xs:element name="parentID" type="m2m:nhURI" />
+					<xs:element name="creationTime" type="m2m:timestamp" minOccurs="0" />
+					<xs:element name="lastModifiedTime" type="m2m:timestamp" minOccurs="0" />
+					<xs:element name="labels" type="m2m:labels" minOccurs="0" />					
+					<xs:element name="accessControlPolicyIDs" type="m2m:acpType" minOccurs="0" />
+					<xs:element name="expirationTime" type="m2m:timestamp" minOccurs="0" />
+					<xs:element name="dynamicAuthorizationConsultationIDs" type="m2m:listOfURIs" minOccurs="0" />					
+					<xs:element name="announceTo" type="m2m:listOfURIs" minOccurs="0" />
+					<xs:element name="announcedAttribute" type="m2m:listOfNCNames" minOccurs="0" />
+					<xs:element name="stateTag" type="xs:nonNegativeInteger" />
+					<xs:element name="creator" type="m2m:ID" minOccurs="0" />
+					<xs:element name="containerDefinition" type="xs:anyURI" />					
+					<xs:element name="ontologyRef" type="xs:anyURI" minOccurs="0" />
+					<xs:element name="contentSize" type="xs:nonNegativeInteger" />
+				</xs:sequence>	
+			<xs:attribute name="resourceName" type="m2m:resourceName" use="required" />
+			<xs:element name="type" type="xs:string">
+				<xs:enumeration value="busstop" />
+			</xs:element>
+			
+			<xs:element name="shortID">
+				<xs:complexType> 				
+					<xs:element name="type">
+						<xs:enumeration value="Text"/>
+					</xs:element>
+					<xs:element name="value" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>	
+			
+			<xs:element name="name" minOccurs="0">
+				<xs:complexType> 				
+					<xs:element name="type">
+						<xs:enumeration value="Text"/>
+					</xs:element>
+					<xs:element name="value" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>		
+			
+			<xs:element name="location" minOccurs="0">
+				<xs:complexType> 				
+					<xs:element name="type">
+						<xs:enumeration value="geo:json" />
+					</xs:element>
+					<xs:element name="value">
+						<xs:element name="type">
+							<xs:enumeration value="Point" />
+						</xs:element>
+						<xs:element name="coordinates">
+							<xs:sequence>
+								<xs:element ref="vis:scale" minOccurs="0"/>
+								<xs:element ref="vis:axis" minOccurs="0" maxOccurs="2"/>
+							</xs:sequence>
+						</xs:element>
+					</xs:element>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="refBusLines">
+				<xs:complexType> 				
+					<xs:element name="type">
+						<xs:enumeration value="Text"/>
+					</xs:element>
+					<xs:element name="value" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="direction" minOccurs="0">
+				<xs:complexType> 				
+					<xs:element name="type">
+						<xs:enumeration value="Text"/>
+					</xs:element>
+					<xs:element name="value">
+						<xs:enumeration value="south" />
+						<xs:enumeration value="north" />			
+						<xs:enumeration value="west" />			
+						<xs:enumeration value="east" />	
+					</xs:element>
+				</xs:complexType>
+			</xs:element>	
+			
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
